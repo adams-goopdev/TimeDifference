@@ -1,5 +1,7 @@
 package edu.ags.timedifference;
 
+import static java.lang.Math.abs;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -41,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //assignment reference
-                String startTime = "2:00:00";
+                //Gather input for StartTime
+                String startTime = etInput.getText().toString();
                 String[] parts = startTime.split(":");
 
                 int hr = Integer.parseInt(parts[0]);
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int startSeconds = hr * 3600 + min * 60 + sec;
 
+
+                //Gather intput for endTime
                 String endTime = etInput2.getText().toString();
                 String[] parts2 = endTime.split(":");
 
@@ -62,11 +66,23 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onCreate: " + startSeconds);
 
-                int secondsDif = startSeconds - endSeconds;
+                //Get the absolute value of the difference between the two numbers
+                int secondsDif = abs(startSeconds - endSeconds);
+
+                //calculate the hours,minutes and seconds for result
+                int p1 = secondsDif % 60;
+                int p2 = secondsDif / 60;
+                int p3 = p2 % 60;
+                p2 = p2 / 60;
+
+                //Add the leading 0s
+                String padded1 = String.format("%02d",p1);
+                String padded2 = String.format("%02d",p2);
+                String padded3 = String.format("%02d",p3);
 
                 // Display the text in the textview
-                //String message = etInput.getText().toString();
-                String message = "" + secondsDif ;
+
+                String message = secondsDif + " = " + padded2 + ":" + padded3 + ":" + padded1 ;
                 tvOutput.setText(message);
 
                 Log.d(TAG, "onClick: " + message);
