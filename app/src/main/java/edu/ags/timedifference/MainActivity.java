@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     int hr = Integer.parseInt(parts[0]);
                     int min = Integer.parseInt(parts[1]);
                     int sec = Integer.parseInt(parts[2]);
+
                     int startSeconds = hr * 3600 + min * 60 + sec;
                     
                     //Gather input for endTime
@@ -64,29 +65,38 @@ public class MainActivity extends AppCompatActivity {
 
                     int endSeconds = hr2 * 3600 + min2 * 60 + sec2;
 
-                    Log.d(TAG, "onCreate: " + startSeconds);
+                    //Error handling for validating that the start time is not greater than the end time
+                    if (startSeconds>endSeconds)
+                    {
+                        tvOutput.setText("Your start time is greater than the End Time");
+                    }
+                    else
+                    {
 
-                    //Get the absolute value of the difference between the two numbers
-                    int secondsDif = abs(startSeconds - endSeconds);
+                        Log.d(TAG, "onCreate: " + startSeconds);
 
-                    //calculate the hours,minutes and seconds for result
-                    int p1 = secondsDif % 60;
-                    int p2 = secondsDif / 60;
-                    int p3 = p2 % 60;
-                    p2 = p2 / 60;
+                        //Get the absolute value of the difference between the two numbers
+                        int secondsDif = abs(startSeconds - endSeconds);
 
-                    //Add the leading 0s
-                    String padded1 = String.format("%02d", p1);
-                    String padded2 = String.format("%02d", p2);
-                    String padded3 = String.format("%02d", p3);
+                        //calculate the hours,minutes and seconds for result
+                        int p1 = secondsDif % 60;
+                        int p2 = secondsDif / 60;
+                        int p3 = p2 % 60;
+                        p2 = p2 / 60;
 
-                    // Display the text in the textview
+                        //Add the leading 0s
+                        String padded1 = String.format("%02d", p1);
+                        String padded2 = String.format("%02d", p2);
+                        String padded3 = String.format("%02d", p3);
 
-                    String message = secondsDif + " = " + padded2 + ":" + padded3 + ":" + padded1;
-                    tvOutput.setText(message);
+                        // Display the text in the textview
 
-                    Log.d(TAG, "onClick: " + message);
-                    showMessage(message);
+                        String message = secondsDif + " = " + padded2 + ":" + padded3 + ":" + padded1;
+                        tvOutput.setText(message);
+
+                        Log.d(TAG, "onClick: " + message);
+                    }
+
                 } catch (Exception ex) {
                     tvOutput.setText("Bad Input Please try again");
                 }
@@ -95,10 +105,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //returns a string
-    private void showMessage(String msg)
-    {
-        //Show a messagebox
-        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-    }
+
 }

@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/tvStartTime"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/startTime"
         android:textColor="@color/white"
@@ -54,7 +54,7 @@
         android:id="@+id/tvOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/helloText"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"

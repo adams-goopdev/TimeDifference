@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimeDifference</string>
+    <string name="app_name">Time Difference</string>
     <string name="helloText">Hello World!</string>
     <string name="display">Time Difference</string>
     <string name="startTime">Please enter a Start Time:</string>
